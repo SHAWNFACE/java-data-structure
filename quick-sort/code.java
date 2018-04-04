@@ -8,7 +8,6 @@ class GFG {
     {
         if(l<r){
             int pivot = partition(a,l,r);
-            System.out.println("pivot:"+pivot);
             quicksort(a,l,pivot-1);
             quicksort(a,pivot+1,r);
             
@@ -19,30 +18,29 @@ class GFG {
         int pivot = a[l];
         int start = l;
         int end = r;
-        while(start<end){
-            while(start < end && a[start] < pivot){
+        while(start < end){
+            while(start <= end && a[start] <= pivot){
                 start++;
             }
-            while(start < end && a[end] >= pivot)
+            while(start < end && a[end] > pivot)
             {
                 end--;
             }
             if(start < end){
-                System.out.println("swap");
-                System.out.println(a[start]+","+a[end]);
-                
+               
                 int temp = a[start];
                 a[start] = a[end];
                 a[end] = temp;
+               
             }
         }
         
-        a[l] = a[start];
-        a[start] = pivot;
-        return start;
+        a[l] = a[start-1];
+        a[start-1] = pivot;
+        return start-1;
     }
 	public static void main (String[] args) {
-		int[] a = {4,7,8,3,2,5,34,65,23};
+		int[] a = {3,7,8,4,5,7,2};
 		quicksort(a,0,a.length-1);
 		System.out.println(Arrays.toString(a));
 	}
