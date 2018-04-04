@@ -17,7 +17,7 @@ class GFG {
     public static void findCommon(String str1,String str2){
         int i = str2.length();
         int j = str1.length();
-        System.out.println(i+","+j);
+        //System.out.println(i+","+j);
         int[][] a = new int[i+1][j+1];
          //print(a);
         for(int m = 0; m<=j;m++){
@@ -40,7 +40,24 @@ class GFG {
                 }
             }
         }
-        print(a);
+        StringBuffer s = new StringBuffer();
+        for(int m=i,n=j;m>0&&n>0;)
+        {
+            if(a[m][n] == a[m-1][n]){
+            m--;
+            }
+            else if(a[m][n] == a[m][n-1]){
+                n--;
+            }
+            else if (str1.charAt(n-1) == str2.charAt(m-1)){
+                s.append(str1.charAt(n-1));
+                m--;
+                n--;
+                
+            }
+        }
+        //print(a);
+        System.out.println(s.reverse().toString());
         
     }
     public static int max(int a,int b){
